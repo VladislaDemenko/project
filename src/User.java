@@ -60,7 +60,7 @@ public class User {
         if (amount >= 0) {
             this.monthlyBudget = amount;
         } else {
-            throw new IllegalArgumentException("Бюджет не может быть отрицательным или содержать буквы");
+            throw new IllegalArgumentException("Бюджет не может быть отрицательным или содержать буквы.");
         }
     }
 
