@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Establishment {
+    private String establishmentId;
     private String name;
     private String address;
     private String category;
@@ -24,6 +25,14 @@ public class Establishment {
         this.category = category;
         this.password = password;
         this.averageBill = 0.0;
+    }
+
+    public String getEstablishmentId() {
+        return establishmentId;
+    }
+
+    public void setEstablishmentId(String establishmentId) {
+        this.establishmentId = establishmentId;
     }
 
     public String getName() {
@@ -66,7 +75,43 @@ public class Establishment {
         return new ArrayList<>(promotions);
     }
 
+    public void addMenuItem(MenuItem item) {
+        if (item != null) {
+            menu.add(item);
+            System.out.println("Блюдо: " + item.getName() + " - добавлено в меню");
+        }
+    }
 
+    public void removeMenuItem(String itemId) {
+        menu.removeIf(item -> item.getItemId().equals(itemId));
+    }
 
+    public void updateMenu(List<MenuItem> newMenu) {
+        if (newMenu != null) {
+            this.menu = new ArrayList<>(newMenu);
+        }
+    }
 
+    public void addPromotion(Promotion promotion) {
+        if (promotion != null) {
+            promotions.add(promotion);
+            System.out.println("Акция: " + promotion.getTitle() + " добавлена");
+        }
+    }
+
+    public void rateUser(User user, int rating) {
+        if (user != null && ValidationUtils.isRatingValid(rating)) {
+            System.out.println("Пользователь: " + user.getName() + " - получил оценку " + rating);
+        }
+    }
+
+    public void calculateAverageBill() {
+        Random random = new Random();
+        this.averageBill = 500 + random.nextInt(2000);
+    }
+
+    @Override
+    public String toString() {
+        return "Establishment{id='" + establishmentId + "', name='" + name + "', category='" + category + "'}";
+    }
 }
